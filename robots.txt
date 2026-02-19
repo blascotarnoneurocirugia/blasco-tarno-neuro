@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://blascotarnoneurocirugia.github.io/blascotarnoneuro/sitemap.xml
+
+# Allow indexing of all content
+Allow: /images/
+Allow: /*.html$
+Allow: /*.css$
+Allow: /*.js$
+
+# Disallow old files if any
+Disallow: /neurocirujanos-ruber.html
