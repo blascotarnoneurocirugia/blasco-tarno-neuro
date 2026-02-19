@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patología Vascular Cerebral - Blasco Tarno Neurocirugía</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --turquoise: #00a19a;
+            --red: #e63946;
+            --dark-gray: #2b2d42;
+            --light-gray: #f8f9fa;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+        }
+
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 90px;
+            width: auto;
+            display: block;
+        }
+        
+        .logo-text {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            line-height: 1.2;
+            display: none;
+        }
+        
+        .logo-text .name {
+            color: var(--turquoise);
+            letter-spacing: 0.5px;
+        }
+        
+        .logo-text .specialty {
+            color: var(--red);
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--turquoise);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-gray);
+        }
+
+        .page-header {
+            margin-top: 120px;
+            background: linear-gradient(135deg, var(--turquoise) 0%, #008b85 100%);
+            color: var(--white);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--white);
+            text-decoration: none;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            transition: opacity 0.3s;
+        }
+
+        .back-link:hover {
+            opacity: 0.8;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .intro-section {
+            background: var(--white);
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--turquoise);
+        }
+
+        .intro-section h2 {
+            color: var(--turquoise);
+            margin-bottom: 1rem;
+        }
+
+        .intro-section p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .intro-section ul {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .intro-section li {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .procedimiento-card {
+            background: var(--white);
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--turquoise);
+        }
+
+        .procedimiento-card h2 {
+            color: var(--turquoise);
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .procedimiento-card h3 {
+            color: var(--dark-gray);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .procedimiento-card p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .procedimiento-card ul {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .procedimiento-card li {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .procedimiento-card strong {
+            color: var(--dark-gray);
+        }
+
+        .coming-soon {
+            background: var(--light-gray);
+            padding: 3rem;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .coming-soon h3 {
+            color: var(--turquoise);
+            margin-bottom: 1rem;
+        }
+
+        .coming-soon p {
+            color: #666;
+        }
+
+        footer {
+            background: var(--dark-gray);
+            color: var(--white);
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--turquoise);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .procedimiento-card {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo-blasco-tarno.jpg" alt="Blasco Tarno Neurocirugía" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <div class="logo-text">
+                        <div class="name">BLASCO TARNO</div>
+                        <div class="specialty">Neurocirugía</div>
+                    </div>
+                </a>
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#inicio">Inicio</a></li>
+                <li><a href="index.html#servicios">Servicios</a></li>
+                <li><a href="index.html#equipo">Equipo Médico</a></li>
+                <li><a href="index.html#blog">Blog</a></li>
+                <li><a href="index.html#faq">Preguntas Frecuentes</a></li>
+                <li><a href="index.html#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <a href="index.html#servicios" class="back-link">← Volver a Servicios</a>
+        <h1>Patología Vascular Cerebral</h1>
+        <p>Tratamiento de aneurismas y malformaciones vasculares</p>
+    </div>
+
+    <div class="container">
+        <div class="intro-section">
+            <h2>Sobre la Patología Vascular Cerebral</h2>
+            <p>Las enfermedades vasculares cerebrales afectan a los vasos sanguíneos del cerebro y pueden causar hemorragias, infartos o problemas neurológicos. Requieren un manejo especializado y, en muchos casos, urgente.</p>
+            
+            <p><strong>Principales patologías vasculares cerebrales:</strong></p>
+            <ul>
+                <li><strong>Aneurismas cerebrales:</strong> dilataciones anormales de las arterias que pueden romperse</li>
+                <li><strong>Malformaciones arteriovenosas (MAVs):</strong> conexiones anómalas entre arterias y venas</li>
+                <li><strong>Fístulas durales:</strong> conexiones anormales entre arterias y senos venosos</li>
+                <li><strong>Cavernomas:</strong> malformaciones de vasos capilares</li>
+                <li><strong>Hemorragia subaracnoidea:</strong> sangrado en el espacio subaracnoideo, frecuentemente por rotura de aneurisma</li>
+                <li><strong>Ictus hemorrágico:</strong> sangrado intracerebral</li>
+            </ul>
+
+            <p><strong>Opciones de tratamiento:</strong></p>
+            <ul>
+                <li><strong>Clipaje microquirúrgico:</strong> colocación de clips metálicos para excluir aneurismas</li>
+                <li><strong>Tratamiento endovascular:</strong> abordaje a través de catéteres (coils, stents, flow diverters)</li>
+                <li><strong>Resección de MAVs:</strong> extirpación quirúrgica de malformaciones</li>
+                <li><strong>Radiocirugía:</strong> tratamiento con radiación focalizada para algunas lesiones</li>
+                <li><strong>Tratamiento combinado:</strong> múltiples técnicas según cada caso</li>
+            </ul>
+
+            <p><strong>Abordaje multidisciplinar:</strong></p>
+            <p>El tratamiento de la patología vascular cerebral requiere un equipo multidisciplinar que incluye neurocirujanos, neurorradiólogos intervencionistas, neurólogos y especialistas en cuidados intensivos para ofrecer el mejor resultado a cada paciente.</p>
+        </div>
+
+        <div class="coming-soon">
+            <h3>Próximamente</h3>
+            <p>En esta sección iremos añadiendo información detallada sobre los diferentes procedimientos para el tratamiento de patología vascular cerebral:</p>
+            <ul style="list-style: none; padding: 0; margin-top: 1.5rem;">
+                <li style="margin-bottom: 0.5rem;">• Clipaje microquirúrgico de aneurismas</li>
+                <li style="margin-bottom: 0.5rem;">• Tratamiento endovascular de aneurismas</li>
+                <li style="margin-bottom: 0.5rem;">• Resección de malformaciones arteriovenosas</li>
+                <li style="margin-bottom: 0.5rem;">• Manejo de hemorragia subaracnoidea</li>
+                <li style="margin-bottom: 0.5rem;">• Tratamiento de cavernomas</li>
+            </ul>
+            <p style="margin-top: 2rem; font-style: italic;">Para consultas específicas, por favor contacte con nuestro equipo.</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Blasco Tarno Neurocirugía</h3>
+                <p>Excelencia en neurocirugía en Hospital Ruber Juan Bravo, Madrid</p>
+                <p style="margin-top: 1rem;"><a href="mailto:ruberblascotarno@gmail.com">ruberblascotarno@gmail.com</a></p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Enlaces Rápidos</h3>
+                <a href="index.html#servicios">Servicios</a>
+                <a href="index.html#equipo">Equipo Médico</a>
+                <a href="index.html#blog">Blog</a>
+                <a href="index.html#faq">Preguntas Frecuentes</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p>Hospital Ruber Juan Bravo</p>
+                <p>C/ Juan Bravo, 39 y 49</p>
+                <p>28006 Madrid, España</p>
+                <p>Tel: 910 687 777 / 910 687 999</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Horario de Consultas</h3>
+                <p>Consultar disponibilidad<br>según especialidad</p>
+                <p><strong>Atención al paciente:</strong><br>900 301 013</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 Blasco Tarno Neurocirugía - Hospital Ruber Juan Bravo. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

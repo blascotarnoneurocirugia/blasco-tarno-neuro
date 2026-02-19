@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cirugía Mínimamente Invasiva (MISS) y Endoscópica - Blasco Tarno</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --turquoise: #00a19a; --red: #e63946; --dark-gray: #2b2d42; --light-gray: #f8f9fa; --white: #ffffff; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; line-height: 1.6; color: var(--dark-gray); }
+        header { background: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: fixed; width: 100%; top: 0; z-index: 1000; }
+        nav { max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo img { height: 90px; width: auto; display: block; }
+        .logo-text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 700; font-size: 1.8rem; line-height: 1.2; display: none; }
+        .logo-text .name { color: var(--turquoise); letter-spacing: 0.5px; }
+        .logo-text .specialty { color: var(--red); font-size: 1rem; font-weight: 600; text-transform: uppercase; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { text-decoration: none; color: var(--dark-gray); font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--turquoise); }
+        .menu-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--dark-gray); }
+        .page-header { margin-top: 120px; background: linear-gradient(135deg, var(--turquoise) 0%, #008b85 100%); color: var(--white); padding: 4rem 2rem; text-align: center; }
+        .page-header h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .back-link { display: inline-block; color: var(--white); text-decoration: none; margin-bottom: 1rem; font-weight: 600; transition: opacity 0.3s; }
+        .back-link:hover { opacity: 0.8; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 4rem 2rem; }
+        .procedure-image { width: 100%; max-width: 600px; margin: 0 auto 3rem; display: block; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .image-caption { text-align: center; color: #666; font-size: 0.9rem; font-style: italic; margin-top: -2rem; margin-bottom: 2rem; }
+        .content-section { background: var(--white); padding: 3rem; margin-bottom: 2rem; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); border-left: 5px solid var(--turquoise); }
+        .content-section h2 { color: var(--turquoise); margin-bottom: 1.5rem; font-size: 1.8rem; padding-bottom: 0.5rem; border-bottom: 3px solid var(--light-gray); }
+        .content-section h3 { color: var(--dark-gray); margin-top: 1.5rem; margin-bottom: 1rem; font-size: 1.3rem; }
+        .content-section p { color: #555; line-height: 1.8; margin-bottom: 1rem; }
+        .content-section ul { margin-left: 2rem; margin-bottom: 1rem; }
+        .content-section li { color: #555; line-height: 1.8; margin-bottom: 0.5rem; }
+        .content-section strong { color: var(--dark-gray); }
+        footer { background: var(--dark-gray); color: var(--white); padding: 3rem 2rem 1rem; margin-top: 4rem; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
+        .footer-section h3 { color: var(--turquoise); margin-bottom: 1rem; }
+        .footer-section p, .footer-section a { color: rgba(255,255,255,0.8); text-decoration: none; display: block; margin-bottom: 0.5rem; }
+        .footer-section a:hover { color: var(--white); }
+        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); }
+        @media (max-width: 768px) { .menu-toggle { display: block; } .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--white); flex-direction: column; padding: 1rem; box-shadow: 0 5px 10px rgba(0,0,0,0.1); } .nav-links.active { display: flex; } .page-header h1 { font-size: 2rem; } .content-section { padding: 2rem 1.5rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo-blasco-tarno.jpg" alt="Blasco Tarno Neurocirugía" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <div class="logo-text"><div class="name">BLASCO TARNO</div><div class="specialty">Neurocirugía</div></div>
+                </a>
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#inicio">Inicio</a></li>
+                <li><a href="index.html#servicios">Servicios</a></li>
+                <li><a href="index.html#equipo">Equipo Médico</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="index.html#faq">Preguntas Frecuentes</a></li>
+                <li><a href="index.html#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <a href="cirugia-columna.html" class="back-link">← Volver a Cirugía de Columna</a>
+        <h1>Cirugía Mínimamente Invasiva (MISS) y Endoscópica</h1>
+    </div>
+
+    <div class="container">
+        <img src="images/cirugia-miss.jpg" alt="Cirugía Mínimamente Invasiva" class="procedure-image">
+        <p class="image-caption">Diagrama de abordajes mínimamente invasivos: ALIF (anterior), PLIF (posterior bilateral), TLIF (transforaminal), XLIF/LLIF (lateral), OLIF (oblicuo)</p>
+
+        <div class="content-section">
+            <h2>¿Qué significa cirugía mínimamente invasiva?</h2>
+            <p>La cirugía mínimamente invasiva de columna (MISS, Minimally Invasive Spine Surgery) agrupa técnicas que permiten realizar los mismos procedimientos que la cirugía abierta convencional, pero con:</p>
+            <ul>
+                <li><strong>Incisiones más pequeñas:</strong> Menor daño a piel y tejidos</li>
+                <li><strong>Preservación muscular:</strong> Dilatación muscular en lugar de sección o despegamiento extenso</li>
+                <li><strong>Menor sangrado:</strong> Reducción de pérdidas hemáticas</li>
+                <li><strong>Menor dolor postoperatorio:</strong> Menos manipulación de tejidos blandos</li>
+                <li><strong>Recuperación más rápida:</strong> Alta hospitalaria precoz y retorno actividades más temprano</li>
+                <li><strong>Menor riesgo infeccioso:</strong> Menor exposición tisular</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Técnicas mínimamente invasivas</h2>
+            
+            <h3>Microdiscectomía tubular</h3>
+            <ul>
+                <li>Extracción de hernia discal lumbar a través de tubo dilatador</li>
+                <li>Incisión 1.5-2 cm vs 4-5 cm cirugía abierta</li>
+                <li>Separación muscular sin corte, preservando integridad muscular</li>
+                <li>Microscopio operatorio para magnificación y precisión</li>
+            </ul>
+
+            <h3>Descompresión lumbar MIS tubular</h3>
+            <ul>
+                <li>Laminotomía unilateral con descompresión bilateral (over-the-top)</li>
+                <li>Foraminotomías selectivas</li>
+                <li>Preservación máxima de facetas articulares</li>
+                <li>Indicada en estenosis de canal sin inestabilidad grave</li>
+            </ul>
+
+            <h3>Artrodesis lumbar MIS percutánea</h3>
+            <ul>
+                <li>Colocación de tornillos pediculares por vía percutánea mediante fluoroscopia</li>
+                <li>Múltiples incisiones pequeñas (1 cm cada una) en lugar de gran incisión posterior</li>
+                <li>Preservación de musculatura paravertebral</li>
+                <li>Puede combinarse con TLIF, ALIF o LLIF para cage intersomático</li>
+            </ul>
+
+            <h3>Técnicas de fusión intersomática MIS</h3>
+            <ul>
+                <li><strong>MIS-TLIF:</strong> Cage transforaminal por abordaje unilateral tubular</li>
+                <li><strong>ALIF:</strong> Cage anterior por minilaparotomía o laparoscopia (cirujano vascular + neurocirujano)</li>
+                <li><strong>LLIF/XLIF:</strong> Cage lateral retroperitoneal, preserva estructuras posteriores</li>
+                <li><strong>OLIF:</strong> Cage oblicuo anterolateral, minimiza lesión psoas</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Cirugía endoscópica de columna</h2>
+            <p>La cirugía endoscópica es el nivel más avanzado de mínima invasión:</p>
+            <ul>
+                <li><strong>Cámara endoscópica:</strong> Visualización directa a través de óptica</li>
+                <li><strong>Canales de trabajo:</strong> Instrumentos especializados miniaturizados</li>
+                <li><strong>Incisión mínima:</strong> 0.7-1 cm habitualmente</li>
+                <li><strong>Abordajes variados:</strong> Interlaminar, transforaminal, contralateral</li>
+                <li><strong>Irrigación continua:</strong> Campo quirúrgico limpio sin sangrado visual</li>
+            </ul>
+
+            <h3>Indicaciones endoscópicas</h3>
+            <ul>
+                <li>Hernia discal lumbar contenida o extruida</li>
+                <li>Estenosis de receso lateral o foramen</li>
+                <li>Estenosis central seleccionada (casos sin gran inestabilidad)</li>
+                <li>Revisión de hernia recidivada (evitar fibrosis epidural extensa)</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Ventajas generales de las técnicas MISS</h2>
+            <ul>
+                <li>Menor estancia hospitalaria (24-48h vs 3-5 días)</li>
+                <li>Menor dolor postoperatorio y consumo analgésicos</li>
+                <li>Menor pérdida sanguínea (raro requerir transfusión)</li>
+                <li>Menor tasa de infección de herida quirúrgica</li>
+                <li>Recuperación funcional más rápida</li>
+                <li>Cicatriz estéticamente más favorable</li>
+                <li>Menor afectación de musculatura paravertebral (menor dolor lumbar residual crónico)</li>
+            </ul>
+        </div>
+
+        <div class="content-section">
+            <h2>Importante: La técnica se elige por indicación médica</h2>
+            <p style="background: #fff3cd; padding: 1rem; border-left: 5px solid #ffc107; border-radius: 5px;">
+                <strong>La cirugía mínimamente invasiva no siempre es la mejor opción.</strong> La elección de la técnica depende de múltiples factores: anatomía del paciente, tipo y extensión de patología, presencia de inestabilidad, cirugías previas, expectativas del paciente y experiencia del cirujano. En algunos casos, la cirugía abierta convencional sigue siendo la técnica de elección por seguridad y eficacia. El objetivo es obtener el mejor resultado clínico posible, no el tamaño más pequeño de cicatriz.
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Blasco Tarno Neurocirugía</h3>
+                <p>Excelencia en neurocirugía en Hospital Ruber Juan Bravo, Madrid</p>
+                <p style="margin-top: 1rem;"><a href="mailto:ruberblascotarno@gmail.com">ruberblascotarno@gmail.com</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Enlaces Rápidos</h3>
+                <a href="index.html#servicios">Servicios</a>
+                <a href="index.html#equipo">Equipo Médico</a>
+                <a href="blog.html">Blog</a>
+                <a href="index.html#faq">Preguntas Frecuentes</a>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p>Hospital Ruber Juan Bravo</p>
+                <p>C/ Juan Bravo, 39 y 49</p>
+                <p>28006 Madrid, España</p>
+                <p>Tel: 910 687 777 / 910 687 999</p>
+            </div>
+            <div class="footer-section">
+                <h3>Horario de Consultas</h3>
+                <p>Consultar disponibilidad<br>según especialidad</p>
+                <p><strong>Atención al paciente:</strong><br>900 301 013</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Blasco Tarno Neurocirugía - Hospital Ruber Juan Bravo. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

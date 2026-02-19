@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperación y actividad física tras cirugía de columna - Blog Blasco Tarno</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --turquoise: #00a19a; --red: #e63946; --dark-gray: #2b2d42; --light-gray: #f8f9fa; --white: #ffffff; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; line-height: 1.6; color: var(--dark-gray); }
+        header { background: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: fixed; width: 100%; top: 0; z-index: 1000; }
+        nav { max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo img { height: 90px; width: auto; display: block; }
+        .logo-text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 700; font-size: 1.8rem; line-height: 1.2; display: none; }
+        .logo-text .name { color: var(--turquoise); letter-spacing: 0.5px; }
+        .logo-text .specialty { color: var(--red); font-size: 1rem; font-weight: 600; text-transform: uppercase; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { text-decoration: none; color: var(--dark-gray); font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--turquoise); }
+        .menu-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--dark-gray); }
+        .article-header { margin-top: 120px; background: linear-gradient(135deg, var(--turquoise) 0%, #008b85 100%); color: var(--white); padding: 4rem 2rem 3rem; }
+        .article-header-content { max-width: 900px; margin: 0 auto; }
+        .back-link { display: inline-block; color: var(--white); text-decoration: none; margin-bottom: 1rem; font-weight: 600; transition: opacity 0.3s; }
+        .back-link:hover { opacity: 0.8; }
+        .article-meta { display: flex; gap: 1.5rem; margin-bottom: 1.5rem; font-size: 0.95rem; opacity: 0.9; }
+        .article-header h1 { font-size: 2.5rem; margin-bottom: 1rem; line-height: 1.2; }
+        .article-intro { font-size: 1.2rem; opacity: 0.95; line-height: 1.8; }
+        .container { max-width: 900px; margin: 0 auto; padding: 4rem 2rem; }
+        .article-content { background: var(--white); padding: 3rem; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); }
+        .article-content img { width: 100%; max-width: 700px; margin: 0 auto 3rem; display: block; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .article-content h2 { color: var(--turquoise); margin-top: 2.5rem; margin-bottom: 1.5rem; font-size: 1.8rem; padding-bottom: 0.5rem; border-bottom: 3px solid var(--light-gray); }
+        .article-content h2:first-child { margin-top: 0; }
+        .article-content p { color: #555; line-height: 1.8; margin-bottom: 1.5rem; font-size: 1.05rem; }
+        .article-content ul { margin-left: 1.5rem; margin-bottom: 1.5rem; }
+        .article-content li { color: #555; line-height: 1.8; margin-bottom: 0.8rem; font-size: 1.05rem; }
+        .article-content strong { color: var(--dark-gray); font-weight: 600; }
+        .alert-box { background: #fff3cd; border-left: 5px solid var(--red); padding: 1.5rem; margin: 2rem 0; border-radius: 5px; }
+        .alert-box h3 { color: var(--red); margin-bottom: 1rem; font-size: 1.3rem; }
+        .info-box { background: #d1ecf1; border-left: 5px solid var(--turquoise); padding: 1.5rem; margin: 2rem 0; border-radius: 5px; }
+        .info-box h3 { color: var(--turquoise); margin-bottom: 1rem; font-size: 1.3rem; }
+        .related-articles { margin-top: 4rem; padding-top: 3rem; border-top: 2px solid var(--light-gray); }
+        .related-articles h3 { color: var(--dark-gray); margin-bottom: 1.5rem; }
+        .related-link { display: block; padding: 1rem; background: var(--light-gray); border-radius: 8px; margin-bottom: 1rem; text-decoration: none; color: var(--dark-gray); transition: all 0.3s; }
+        .related-link:hover { background: var(--turquoise); color: var(--white); }
+        footer { background: var(--dark-gray); color: var(--white); padding: 3rem 2rem 1rem; margin-top: 4rem; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
+        .footer-section h3 { color: var(--turquoise); margin-bottom: 1rem; }
+        .footer-section p, .footer-section a { color: rgba(255,255,255,0.8); text-decoration: none; display: block; margin-bottom: 0.5rem; }
+        .footer-section a:hover { color: var(--white); }
+        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); }
+        @media (max-width: 768px) { .menu-toggle { display: block; } .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--white); flex-direction: column; padding: 1rem; box-shadow: 0 5px 10px rgba(0,0,0,0.1); } .nav-links.active { display: flex; } .article-header h1 { font-size: 2rem; } .article-content { padding: 2rem 1.5rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo-blasco-tarno.jpg" alt="Blasco Tarno Neurocirugía" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <div class="logo-text"><div class="name">BLASCO TARNO</div><div class="specialty">Neurocirugía</div></div>
+                </a>
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#inicio">Inicio</a></li>
+                <li><a href="index.html#servicios">Servicios</a></li>
+                <li><a href="index.html#equipo">Equipo Médico</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="index.html#faq">Preguntas Frecuentes</a></li>
+                <li><a href="index.html#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="article-header">
+        <div class="article-header-content">
+            <a href="blog.html" class="back-link">← Volver al Blog</a>
+            <div class="article-meta">
+                <span>📅 Enero 2026</span>
+                <span>🏃 Rehabilitación</span>
+                <span>⏱️ 7 min lectura</span>
+            </div>
+            <h1>🏃 Recuperación y comienzo de actividad física tras cirugía de columna</h1>
+            <p class="article-intro">La cirugía de columna tiene como objetivo aliviar el dolor, mejorar la función y permitir recuperar una vida activa. La actividad física es una parte fundamental del proceso de recuperación. La evidencia científica demuestra que moverse de forma progresiva y controlada mejora los resultados, reduce el dolor y acelera la vuelta a la vida normal.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="article-content">
+            <img src="images/recuperacion-actividad-fisica.jpg" alt="Recuperación y actividad física tras cirugía de columna">
+
+            <p>Cada paciente tiene su propio ritmo, pero en general la recuperación sigue una evolución gradual.</p>
+
+            <h2>🕒 Principios generales de la recuperación</h2>
+            <ul>
+                <li>El reposo absoluto prolongado no es recomendable.</li>
+                <li>El movimiento precoz favorece la circulación, la cicatrización y la recuperación muscular.</li>
+                <li>La actividad debe aumentar de forma progresiva, sin dolor intenso.</li>
+                <li>Es normal tener molestias al inicio: no significa que la cirugía haya fallado.</li>
+            </ul>
+            <p><strong>El objetivo no es evitar todo dolor, sino recuperar función de manera segura.</strong></p>
+
+            <h2>🚶 Fase inicial: primeras semanas</h2>
+            <p><strong>El ejercicio principal es caminar.</strong></p>
+            
+            <p><strong>Beneficios demostrados:</strong></p>
+            <ul>
+                <li>Reduce el riesgo de complicaciones.</li>
+                <li>Mejora la movilidad.</li>
+                <li>Disminuye la rigidez.</li>
+                <li>Favorece la recuperación neurológica.</li>
+            </ul>
+
+            <p><strong>Recomendaciones:</strong></p>
+            <ul>
+                <li>Caminar varias veces al día.</li>
+                <li>Empezar con distancias cortas.</li>
+                <li>Aumentar tiempo progresivamente.</li>
+                <li>Alternar actividad con descanso.</li>
+            </ul>
+
+            <p><strong>Evitar:</strong></p>
+            <ul>
+                <li>Cargar peso.</li>
+                <li>Movimientos bruscos.</li>
+                <li>Deportes de impacto.</li>
+            </ul>
+
+            <h2>🧠 Recuperación tras cirugía cervical</h2>
+            <p>Además de caminar:</p>
+            <ul>
+                <li>Mantener el cuello alineado.</li>
+                <li>Evitar flexión mantenida (mirar móvil mucho tiempo).</li>
+                <li>Movimientos suaves cuando lo indique el especialista.</li>
+                <li>Ejercicios de hombros y escápulas progresivos.</li>
+            </ul>
+            <p>El fortalecimiento cervical se inicia de forma gradual, generalmente tras las primeras semanas.</p>
+
+            <h2>🦴 Recuperación tras cirugía lumbar</h2>
+            <p><strong>Objetivos:</strong></p>
+            <ul>
+                <li>Recuperar movilidad lumbar.</li>
+                <li>Fortalecer musculatura abdominal y paravertebral.</li>
+                <li>Mejorar control postural.</li>
+            </ul>
+
+            <p><strong>Ejercicios habituales (cuando se autoricen):</strong></p>
+            <ul>
+                <li>Activación abdominal suave.</li>
+                <li>Movilidad pélvica.</li>
+                <li>Estabilización lumbar.</li>
+                <li>Fortalecimiento progresivo del core.</li>
+            </ul>
+
+            <h2>🏋️ Inicio de rehabilitación y fisioterapia</h2>
+            <p><strong>La fisioterapia puede ayudar a:</strong></p>
+            <ul>
+                <li>Reducir dolor.</li>
+                <li>Mejorar movilidad.</li>
+                <li>Recuperar fuerza.</li>
+                <li>Prevenir recaídas.</li>
+            </ul>
+            <p>La evidencia muestra que los programas guiados de ejercicio mejoran la función y la satisfacción del paciente tras cirugía de columna.</p>
+
+            <h2>⏱ Cuándo volver al deporte</h2>
+            <p>Depende del tipo de cirugía y de cada paciente, pero de forma orientativa:</p>
+            <ul>
+                <li><strong>Caminar:</strong> desde el inicio.</li>
+                <li><strong>Bicicleta estática:</strong> semanas posteriores según evolución.</li>
+                <li><strong>Natación:</strong> cuando la herida esté cicatrizada.</li>
+                <li><strong>Gimnasio:</strong> progresivo y supervisado.</li>
+                <li><strong>Deportes de impacto:</strong> más tardíamente y con autorización médica.</li>
+            </ul>
+            <p><strong>El retorno deportivo debe ser progresivo y sin dolor significativo.</strong></p>
+
+            <h2>🧍 Importancia de la postura</h2>
+            <p>Una buena postura reduce la sobrecarga de la columna:</p>
+            <ul>
+                <li>Espalda recta al sentarse.</li>
+                <li>Pantalla a la altura de los ojos.</li>
+                <li>Cambios de postura frecuentes.</li>
+                <li>Evitar permanecer mucho tiempo sentado.</li>
+            </ul>
+
+            <h2>🚬 Factores que influyen en la recuperación</h2>
+            <p><strong>Favorecen la recuperación:</strong></p>
+            <ul>
+                <li>Actividad física progresiva.</li>
+                <li>Buen descanso.</li>
+                <li>Nutrición adecuada.</li>
+                <li>Actitud positiva.</li>
+            </ul>
+
+            <p><strong>Retrasan la recuperación:</strong></p>
+            <ul>
+                <li>Sedentarismo.</li>
+                <li>Tabaco.</li>
+                <li>Sobrepeso.</li>
+                <li>Miedo al movimiento.</li>
+            </ul>
+
+            <div class="info-box">
+                <h3>📈 Mensaje importante</h3>
+                <p><strong>La mayoría de pacientes pueden volver a una vida activa tras cirugía de columna. El movimiento es parte del tratamiento.</strong></p>
+                <p style="margin: 0;">Recuperarse no significa evitar la actividad, sino volver a moverse con seguridad y confianza.</p>
+            </div>
+
+            <div class="alert-box">
+                <h3>🚨 Consulta si aparece</h3>
+                <ul style="margin-bottom: 0;">
+                    <li>Dolor intenso que empeora progresivamente.</li>
+                    <li>Pérdida de fuerza.</li>
+                    <li>Alteraciones de sensibilidad.</li>
+                    <li>Fiebre o signos de infección.</li>
+                </ul>
+            </div>
+
+            <div class="related-articles">
+                <h3>Artículos relacionados</h3>
+                <a href="blog-postoperatorio-lumbar.html" class="related-link">
+                    <strong>→ Cuidados postoperatorios de cirugía lumbar</strong>
+                    <br><small>Recomendaciones tras intervención lumbar</small>
+                </a>
+                <a href="blog-postoperatorio-cervical.html" class="related-link">
+                    <strong>→ Cuidados postoperatorios de cirugía cervical</strong>
+                    <br><small>Recomendaciones tras intervención cervical</small>
+                </a>
+                <a href="cirugia-columna.html" class="related-link">
+                    <strong>→ Procedimientos de cirugía de columna</strong>
+                    <br><small>Información sobre las cirugías</small>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Blasco Tarno Neurocirugía</h3>
+                <p>Excelencia en neurocirugía en Hospital Ruber Juan Bravo, Madrid</p>
+                <p style="margin-top: 1rem;"><a href="mailto:ruberblascotarno@gmail.com">ruberblascotarno@gmail.com</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Enlaces Rápidos</h3>
+                <a href="index.html#servicios">Servicios</a>
+                <a href="index.html#equipo">Equipo Médico</a>
+                <a href="blog.html">Blog</a>
+                <a href="index.html#faq">Preguntas Frecuentes</a>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p>Hospital Ruber Juan Bravo</p>
+                <p>C/ Juan Bravo, 39 y 49</p>
+                <p>28006 Madrid, España</p>
+                <p>Tel: 910 687 777 / 910 687 999</p>
+            </div>
+            <div class="footer-section">
+                <h3>Horario de Consultas</h3>
+                <p>Consultar disponibilidad<br>según especialidad</p>
+                <p><strong>Atención al paciente:</strong><br>900 301 013</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Blasco Tarno Neurocirugía - Hospital Ruber Juan Bravo. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

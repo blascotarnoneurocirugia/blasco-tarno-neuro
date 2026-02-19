@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tumores Cerebrales - Blasco Tarno Neurocirugía</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --turquoise: #00a19a;
+            --red: #e63946;
+            --dark-gray: #2b2d42;
+            --light-gray: #f8f9fa;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+        }
+
+        /* Header & Navigation */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 90px;
+            width: auto;
+            display: block;
+        }
+        
+        .logo-text {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            line-height: 1.2;
+            display: none;
+        }
+        
+        .logo-text .name {
+            color: var(--turquoise);
+            letter-spacing: 0.5px;
+        }
+        
+        .logo-text .specialty {
+            color: var(--red);
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--turquoise);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-gray);
+        }
+
+        /* Page Header */
+        .page-header {
+            margin-top: 120px;
+            background: linear-gradient(135deg, var(--turquoise) 0%, #008b85 100%);
+            color: var(--white);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--white);
+            text-decoration: none;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            transition: opacity 0.3s;
+        }
+
+        .back-link:hover {
+            opacity: 0.8;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        /* Procedure Cards */
+        .procedimiento-card {
+            background: var(--white);
+            padding: 3rem;
+            margin-bottom: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--turquoise);
+        }
+
+        .procedimiento-card h2 {
+            color: var(--turquoise);
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+
+        .procedimiento-card h3 {
+            color: var(--dark-gray);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .procedimiento-card p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .procedimiento-card ul {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .procedimiento-card li {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .procedimiento-card strong {
+            color: var(--dark-gray);
+        }
+
+        .procedimiento-image {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .procedimiento-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .procedimiento-image p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-gray);
+            color: var(--white);
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--turquoise);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .procedimiento-card {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo-blasco-tarno.jpg" alt="Blasco Tarno Neurocirugía" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <div class="logo-text">
+                        <div class="name">BLASCO TARNO</div>
+                        <div class="specialty">Neurocirugía</div>
+                    </div>
+                </a>
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#inicio">Inicio</a></li>
+                <li><a href="index.html#servicios">Servicios</a></li>
+                <li><a href="index.html#equipo">Equipo Médico</a></li>
+                <li><a href="index.html#blog">Blog</a></li>
+                <li><a href="index.html#faq">Preguntas Frecuentes</a></li>
+                <li><a href="index.html#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <a href="index.html#servicios" class="back-link">← Volver a Servicios</a>
+        <h1>Tumores Cerebrales</h1>
+        <p>Información detallada sobre cirugía de tumores intracraneales</p>
+    </div>
+
+    <!-- Content -->
+    <div class="container">
+        <div class="procedimiento-card">
+            <h2>Cirugía de tumores intracraneales: meningioma, gliomas y otros</h2>
+            
+            <div class="procedimiento-image">
+                <img src="images/cirugia-tumor-cerebral.jpg" alt="Planificación y resección de glioma cerebral">
+                <p>Planificación de resección con neuronavegador y monitorización neurofisiológica para resección máxima segura</p>
+            </div>
+            
+            <h3>Objetivos generales de la cirugía cerebral</h3>
+            <p>Dependen del tumor, pero suelen ser:</p>
+            <ul>
+                <li>Quitar masa tumoral para mejorar síntomas y controlar la enfermedad</li>
+                <li>Obtener diagnóstico (biopsia) para decidir tratamiento (radioterapia, quimioterapia, seguimiento)</li>
+                <li>Proteger funciones (lenguaje, movimiento, visión) minimizando secuelas</li>
+            </ul>
+            
+            <h3>Meningioma intracraneal</h3>
+            <p>Suele ser un tumor extraaxial (nace de las meninges). Muchas veces es benigno, pero no siempre.</p>
+            
+            <p><strong>Cuándo se opera (típico):</strong></p>
+            <ul>
+                <li>Crecimiento en controles</li>
+                <li>Síntomas por compresión (crisis epilépticas, déficit focal, hipertensión intracraneal)</li>
+                <li>Edema cerebral importante o localización problemática</li>
+            </ul>
+            
+            <p><strong>En qué consiste:</strong></p>
+            <ul>
+                <li>Craneotomía (abrir una "ventana" de hueso)</li>
+                <li>Disección del tumor, control de su base de implantación cuando es posible</li>
+                <li>Cierre y recolocación del hueso (habitualmente)</li>
+            </ul>
+            
+            <h3>Gliomas (y otros tumores intraaxiales)</h3>
+            <p>Los gliomas nacen del propio tejido cerebral. La estrategia varía por tipo y grado.</p>
+            
+            <p><strong>Opciones quirúrgicas:</strong></p>
+            <ul>
+                <li><strong>Resección máxima segura:</strong> quitar lo máximo sin dañar función</li>
+                <li><strong>Biopsia estereotáxica:</strong> cuando no es seguro resecar o para diagnóstico</li>
+            </ul>
+            
+            <h3>Herramientas habituales para seguridad</h3>
+            <p>Como se puede ver en la imagen, utilizamos tecnología avanzada para maximizar la seguridad:</p>
+            <ul>
+                <li><strong>Neuronavegación:</strong> sistema tipo "GPS" cerebral que permite localizar con precisión el tumor y las estructuras circundantes</li>
+                <li><strong>Monitorización neurofisiológica:</strong> vigilancia continua de las funciones cerebrales durante la cirugía para evitar daños</li>
+                <li><strong>Fluorescencia:</strong> en algunos tumores (como glioblastomas) para visualizar mejor los bordes tumorales</li>
+                <li><strong>Cirugía "despierto":</strong> en áreas elocuentes (lenguaje) cuando está indicado, permitiendo verificar funciones en tiempo real</li>
+            </ul>
+            
+            <p>El objetivo es conseguir una <strong>resección máxima segura</strong>, eliminando la mayor cantidad de tumor posible mientras se preservan las zonas funcionales del cerebro (zona funcional en verde en la imagen).</p>
+            
+            <h3>Ingreso y recuperación</h3>
+            <ul>
+                <li>Suele requerir UCI/URPA al inicio según caso</li>
+                <li>Se controla edema/dolor y se valora neurología</li>
+                <li>Rehabilitación si hay déficits</li>
+                <li>Seguimiento con anatomía patológica y comité para plan oncológico</li>
+            </ul>
+            
+            <h3>Riesgos (los que se explican siempre)</h3>
+            <ul>
+                <li>Sangrado intracraneal, infección, crisis epilépticas</li>
+                <li>Edema cerebral transitorio</li>
+                <li>Déficits neurológicos (dependen de localización)</li>
+                <li>Complicaciones generales (trombosis, neumonía, anestesia)</li>
+            </ul>
+            
+            <h3>Mensaje realista y útil para pacientes</h3>
+            <p>En tumores cerebrales, <strong>la cirugía suele ser el primer paso de un plan más amplio</strong> (observación, radioterapia, quimioterapia o combinaciones), según el diagnóstico final obtenido del análisis del tumor.</p>
+            
+            <p>El equipo multidisciplinar (neurocirujano, oncólogo, radioterapeuta, neurólogo) trabajará conjuntamente para diseñar el mejor plan de tratamiento individualizado para cada paciente.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Blasco Tarno Neurocirugía</h3>
+                <p>Excelencia en neurocirugía en Hospital Ruber Juan Bravo, Madrid</p>
+                <p style="margin-top: 1rem;"><a href="mailto:ruberblascotarno@gmail.com">ruberblascotarno@gmail.com</a></p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Enlaces Rápidos</h3>
+                <a href="index.html#servicios">Servicios</a>
+                <a href="index.html#equipo">Equipo Médico</a>
+                <a href="index.html#blog">Blog</a>
+                <a href="index.html#faq">Preguntas Frecuentes</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p>Hospital Ruber Juan Bravo</p>
+                <p>C/ Juan Bravo, 39 y 49</p>
+                <p>28006 Madrid, España</p>
+                <p>Tel: 910 687 777 / 910 687 999</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Horario de Consultas</h3>
+                <p>Consultar disponibilidad<br>según especialidad</p>
+                <p><strong>Atención al paciente:</strong><br>900 301 013</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 Blasco Tarno Neurocirugía - Hospital Ruber Juan Bravo. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

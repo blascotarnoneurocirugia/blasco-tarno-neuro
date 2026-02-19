@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cirugía de Columna - Blasco Tarno Neurocirugía</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --turquoise: #00a19a;
+            --red: #e63946;
+            --dark-gray: #2b2d42;
+            --light-gray: #f8f9fa;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+        }
+
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 90px;
+            width: auto;
+            display: block;
+        }
+        
+        .logo-text {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            line-height: 1.2;
+            display: none;
+        }
+        
+        .logo-text .name {
+            color: var(--turquoise);
+            letter-spacing: 0.5px;
+        }
+        
+        .logo-text .specialty {
+            color: var(--red);
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--turquoise);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-gray);
+        }
+
+        .page-header {
+            margin-top: 120px;
+            background: linear-gradient(135deg, var(--turquoise) 0%, #008b85 100%);
+            color: var(--white);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--white);
+            text-decoration: none;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            transition: opacity 0.3s;
+        }
+
+        .back-link:hover {
+            opacity: 0.8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .intro-section {
+            background: var(--white);
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--turquoise);
+        }
+
+        .procedures-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .procedure-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .procedure-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .procedure-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .procedure-content {
+            padding: 2rem;
+        }
+
+        .procedure-content h3 {
+            color: var(--turquoise);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .procedure-content p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .read-more {
+            color: var(--turquoise);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        footer {
+            background: var(--dark-gray);
+            color: var(--white);
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--turquoise);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .procedures-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo-blasco-tarno.jpg" alt="Blasco Tarno Neurocirugía" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <div class="logo-text">
+                        <div class="name">BLASCO TARNO</div>
+                        <div class="specialty">Neurocirugía</div>
+                    </div>
+                </a>
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#inicio">Inicio</a></li>
+                <li><a href="index.html#servicios">Servicios</a></li>
+                <li><a href="index.html#equipo">Equipo Médico</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="index.html#faq">Preguntas Frecuentes</a></li>
+                <li><a href="index.html#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <a href="index.html#servicios" class="back-link">← Volver a Servicios</a>
+        <h1>Cirugía de Columna</h1>
+        <p>Procedimientos especializados para patologías de columna vertebral</p>
+    </div>
+
+    <div class="container">
+        <div class="intro-section">
+            <h2 style="color: var(--turquoise); margin-bottom: 1rem;">Sobre la Cirugía de Columna</h2>
+            <p style="color: #555; line-height: 1.8;">La cirugía de columna abarca un conjunto de procedimientos especializados para tratar patologías degenerativas, traumáticas o congénitas de la columna vertebral. Nuestro equipo utiliza las técnicas más avanzadas, incluyendo cirugía mínimamente invasiva (MISS) y procedimientos endoscópicos, para optimizar resultados y reducir tiempos de recuperación.</p>
+        </div>
+
+        <h2 style="color: var(--dark-gray); margin-bottom: 2rem;">Procedimientos Disponibles</h2>
+
+        <div class="procedures-grid">
+            <a href="procedimiento-hernia-lumbar.html" class="procedure-card">
+                <img src="images/cirugia-hernia-lumbar.jpg" alt="Microdiscectomía Lumbar" class="procedure-image">
+                <div class="procedure-content">
+                    <h3>Hernia Discal Lumbar (Microdiscectomía)</h3>
+                    <p>Tratamiento quirúrgico para hernia discal lumbar que causa ciática, dolor de pierna, hormigueo o debilidad.</p>
+                    <span class="read-more">Ver procedimiento →</span>
+                </div>
+            </a>
+
+            <a href="procedimiento-hernia-cervical.html" class="procedure-card">
+                <img src="images/cirugia-hernia-cervical.jpg" alt="Cirugía Cervical ACDF" class="procedure-image">
+                <div class="procedure-content">
+                    <h3>Hernia Discal Cervical + Artrodesis (ACDF)</h3>
+                    <p>Abordaje anterior para descomprimir nervios cervicales y estabilizar con cage e injerto óseo.</p>
+                    <span class="read-more">Ver procedimiento →</span>
+                </div>
+            </a>
+
+            <a href="procedimiento-estenosis-lumbar.html" class="procedure-card">
+                <img src="images/cirugia-laminectomia.jpg" alt="Laminectomía y Artrodesis" class="procedure-image">
+                <div class="procedure-content">
+                    <h3>Estenosis de Canal Lumbar</h3>
+                    <p>Laminectomía descompresiva y artrodesis con instrumentación para claudicación neurógena.</p>
+                    <span class="read-more">Ver procedimiento →</span>
+                </div>
+            </a>
+
+            <a href="procedimiento-cirugia-miss.html" class="procedure-card">
+                <img src="images/cirugia-miss.jpg" alt="Cirugía Mínimamente Invasiva" class="procedure-image">
+                <div class="procedure-content">
+                    <h3>Cirugía Mínimamente Invasiva (MISS)</h3>
+                    <p>Técnicas MISS y endoscópicas para menor daño muscular y recuperación más rápida.</p>
+                    <span class="read-more">Ver procedimiento →</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Blasco Tarno Neurocirugía</h3>
+                <p>Excelencia en neurocirugía en Hospital Ruber Juan Bravo, Madrid</p>
+                <p style="margin-top: 1rem;"><a href="mailto:ruberblascotarno@gmail.com">ruberblascotarno@gmail.com</a></p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Enlaces Rápidos</h3>
+                <a href="index.html#servicios">Servicios</a>
+                <a href="index.html#equipo">Equipo Médico</a>
+                <a href="blog.html">Blog</a>
+                <a href="index.html#faq">Preguntas Frecuentes</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p>Hospital Ruber Juan Bravo</p>
+                <p>C/ Juan Bravo, 39 y 49</p>
+                <p>28006 Madrid, España</p>
+                <p>Tel: 910 687 777 / 910 687 999</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Horario de Consultas</h3>
+                <p>Consultar disponibilidad<br>según especialidad</p>
+                <p><strong>Atención al paciente:</strong><br>900 301 013</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 Blasco Tarno Neurocirugía - Hospital Ruber Juan Bravo. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

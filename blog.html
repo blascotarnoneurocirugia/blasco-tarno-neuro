@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog y Noticias - Blasco Tarno Neurocirugía</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --turquoise: #00a19a;
+            --red: #e63946;
+            --dark-gray: #2b2d42;
+            --light-gray: #f8f9fa;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+        }
+
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 90px;
+            width: auto;
+            display: block;
+        }
+        
+        .logo-text {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            line-height: 1.2;
+            display: none;
+        }
+        
+        .logo-text .name {
+            color: var(--turquoise);
+            letter-spacing: 0.5px;
+        }
+        
+        .logo-text .specialty {
+            color: var(--red);
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--turquoise);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-gray);
+        }
+
+        .page-header {
+            margin-top: 120px;
+            background: linear-gradient(135deg, var(--turquoise) 0%, #008b85 100%);
+            color: var(--white);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: var(--white);
+            text-decoration: none;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            transition: opacity 0.3s;
+        }
+
+        .back-link:hover {
+            opacity: 0.8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .blog-categories {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .category-tag {
+            padding: 0.5rem 1.5rem;
+            background: var(--light-gray);
+            border-radius: 25px;
+            color: var(--dark-gray);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .category-tag:hover,
+        .category-tag.active {
+            background: var(--turquoise);
+            color: var(--white);
+            border-color: var(--turquoise);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .blog-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .blog-card-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--turquoise), #008b85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 3rem;
+        }
+
+        .blog-card-content {
+            padding: 1.5rem;
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .blog-date {
+            color: var(--turquoise);
+            font-weight: 600;
+        }
+
+        .blog-category {
+            color: #666;
+            background: var(--light-gray);
+            padding: 0.2rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+        }
+
+        .blog-card h3 {
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .blog-card p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .read-more {
+            color: var(--turquoise);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .read-more:hover {
+            color: var(--red);
+        }
+
+        footer {
+            background: var(--dark-gray);
+            color: var(--white);
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--turquoise);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo-blasco-tarno.jpg" alt="Blasco Tarno Neurocirugía" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <div class="logo-text">
+                        <div class="name">BLASCO TARNO</div>
+                        <div class="specialty">Neurocirugía</div>
+                    </div>
+                </a>
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#inicio">Inicio</a></li>
+                <li><a href="index.html#servicios">Servicios</a></li>
+                <li><a href="index.html#equipo">Equipo Médico</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="index.html#faq">Preguntas Frecuentes</a></li>
+                <li><a href="index.html#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <a href="index.html" class="back-link">← Volver a Inicio</a>
+        <h1>Blog y Noticias</h1>
+        <p>Información actualizada sobre neurocirugía y cuidados postoperatorios</p>
+    </div>
+
+    <div class="container">
+        <div class="blog-categories">
+            <span class="category-tag active" onclick="filterCategory('all')">Todos</span>
+            <span class="category-tag" onclick="filterCategory('postoperatorio')">Postoperatorio</span>
+            <span class="category-tag" onclick="filterCategory('procedimientos')">Procedimientos</span>
+            <span class="category-tag" onclick="filterCategory('consejos')">Consejos</span>
+            <span class="category-tag" onclick="filterCategory('noticias')">Noticias</span>
+        </div>
+
+        <div class="blog-grid" id="blogGrid">
+            <!-- Artículo 1: Postoperatorio Cirugía Lumbar -->
+            <a href="blog-postoperatorio-lumbar.html" style="text-decoration: none; color: inherit;" data-category="postoperatorio">
+                <div class="blog-card">
+                    <div class="blog-card-image">🏥</div>
+                    <div class="blog-card-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">Enero 2026</span>
+                            <span class="blog-category">Postoperatorio</span>
+                        </div>
+                        <h3>Cuidados Postoperatorios de Cirugía Lumbar</h3>
+                        <p>Guía completa con recomendaciones y cuidados esenciales tras una intervención de columna lumbar.</p>
+                        <span class="read-more">Leer más →</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Artículo 2: Postoperatorio Cirugía Cervical -->
+            <a href="blog-postoperatorio-cervical.html" style="text-decoration: none; color: inherit;" data-category="postoperatorio">
+                <div class="blog-card">
+                    <div class="blog-card-image">🏥</div>
+                    <div class="blog-card-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">Enero 2026</span>
+                            <span class="blog-category">Postoperatorio</span>
+                        </div>
+                        <h3>Cuidados Postoperatorios de Cirugía Cervical</h3>
+                        <p>Recomendaciones específicas para la recuperación tras cirugía de columna cervical.</p>
+                        <span class="read-more">Leer más →</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Artículo 3: Postoperatorio Craneotomía -->
+            <a href="blog-postoperatorio-craneotomia.html" style="text-decoration: none; color: inherit;" data-category="postoperatorio">
+                <div class="blog-card">
+                    <div class="blog-card-image">🧠</div>
+                    <div class="blog-card-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">Enero 2026</span>
+                            <span class="blog-category">Postoperatorio</span>
+                        </div>
+                        <h3>Cuidados tras Cirugía de Craneotomía</h3>
+                        <p>Guía de recuperación tras cirugía cerebral para tratamiento de tumores y otras lesiones.</p>
+                        <span class="read-more">Leer más →</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Artículo 4: Recuperación y Actividad Física -->
+            <a href="blog-recuperacion-actividad-fisica.html" style="text-decoration: none; color: inherit;" data-category="consejos">
+                <div class="blog-card">
+                    <div class="blog-card-image">🏃</div>
+                    <div class="blog-card-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">Enero 2026</span>
+                            <span class="blog-category">Rehabilitación</span>
+                        </div>
+                        <h3>Recuperación y Actividad Física</h3>
+                        <p>Guía completa sobre recuperación y retorno a la actividad física tras cirugía de columna lumbar y cervical.</p>
+                        <span class="read-more">Leer más →</span>
+                    </div>
+                </div>
+            </a>
+
+            <!-- Artículo 5: Placeholder -->
+            <div class="blog-card" style="opacity: 0.6; cursor: default;">
+                <div class="blog-card-image">📰</div>
+                <div class="blog-card-content">
+                    <div class="blog-meta">
+                        <span class="blog-date">Próximamente</span>
+                        <span class="blog-category">Consejos</span>
+                    </div>
+                    <h3>Más artículos próximamente</h3>
+                    <p>Continuaremos publicando información útil sobre procedimientos, cuidados y consejos de salud neurológica.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Blasco Tarno Neurocirugía</h3>
+                <p>Excelencia en neurocirugía en Hospital Ruber Juan Bravo, Madrid</p>
+                <p style="margin-top: 1rem;"><a href="mailto:ruberblascotarno@gmail.com">ruberblascotarno@gmail.com</a></p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Enlaces Rápidos</h3>
+                <a href="index.html#servicios">Servicios</a>
+                <a href="index.html#equipo">Equipo Médico</a>
+                <a href="blog.html">Blog</a>
+                <a href="index.html#faq">Preguntas Frecuentes</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p>Hospital Ruber Juan Bravo</p>
+                <p>C/ Juan Bravo, 39 y 49</p>
+                <p>28006 Madrid, España</p>
+                <p>Tel: 910 687 777 / 910 687 999</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Horario de Consultas</h3>
+                <p>Consultar disponibilidad<br>según especialidad</p>
+                <p><strong>Atención al paciente:</strong><br>900 301 013</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 Blasco Tarno Neurocirugía - Hospital Ruber Juan Bravo. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        function filterCategory(category) {
+            // Update active tag
+            document.querySelectorAll('.category-tag').forEach(tag => {
+                tag.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Filter articles
+            const articles = document.querySelectorAll('#blogGrid > a, #blogGrid > div');
+            articles.forEach(article => {
+                if (category === 'all') {
+                    article.style.display = 'block';
+                } else {
+                    const articleCategory = article.getAttribute('data-category');
+                    if (articleCategory === category) {
+                        article.style.display = 'block';
+                    } else {
+                        article.style.display = 'none';
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

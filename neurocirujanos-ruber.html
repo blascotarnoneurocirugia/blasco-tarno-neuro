@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blasco Tarno Neurocirugía - Hospital Ruber Juan Bravo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --turquoise: #00a19a;
+            --red: #e63946;
+            --dark-gray: #2b2d42;
+            --light-gray: #f8f9fa;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+        }
+
+        /* Header & Navigation */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 90px;
+            width: auto;
+            display: block;
+        }
+        
+        .logo-text {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            line-height: 1.2;
+            display: none; /* Show only if image fails */
+        }
+        
+        .logo-text .name {
+            color: var(--turquoise);
+            letter-spacing: 0.5px;
+        }
+        
+        .logo-text .specialty {
+            color: var(--red);
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-gray);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--turquoise);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-gray);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            background: linear-gradient(135deg, var(--turquoise) 0%, #008b85 100%);
+            color: var(--white);
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--red);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(230, 57, 70, 0.4);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        /* Section Styles */
+        section {
+            margin-bottom: 4rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--turquoise);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid var(--turquoise);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .service-card h3 {
+            color: var(--turquoise);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        .service-card .ver-procedimientos {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--turquoise);
+            font-weight: 600;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .service-card .ver-procedimientos:hover {
+            color: var(--red);
+        }
+        
+        .procedimientos-lista {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            margin-top: 1rem;
+        }
+        
+        .procedimientos-lista.active {
+            max-height: 3000px;
+        }
+        
+        .procedimiento-item {
+            background: var(--light-gray);
+            padding: 1.5rem;
+            margin-top: 1rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--turquoise);
+        }
+        
+        .procedimiento-item h4 {
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .procedimiento-item h5 {
+            color: var(--turquoise);
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .procedimiento-item p, .procedimiento-item ul {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 0.8rem;
+        }
+        
+        .procedimiento-item ul {
+            margin-left: 1.5rem;
+        }
+        
+        .procedimiento-item li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .doctor-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .doctor-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--turquoise), #008b85);
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--white);
+        }
+
+        .doctor-card h3 {
+            color: var(--dark-gray);
+            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+        }
+
+        .doctor-card .specialty {
+            color: var(--turquoise);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .doctor-card p {
+            color: #666;
+            line-height: 1.8;
+            text-align: left;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 3rem auto;
+        }
+
+        .faq-item {
+            background: var(--white);
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--dark-gray);
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: var(--light-gray);
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--turquoise);
+        }
+
+        .faq-question.active::after {
+            content: '−';
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 1.5rem;
+            color: #666;
+        }
+
+        .faq-answer.active {
+            max-height: 500px;
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        /* Blog Section */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .blog-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--turquoise), #008b85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 3rem;
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-date {
+            color: var(--turquoise);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-card h3 {
+            color: var(--dark-gray);
+            margin-bottom: 1rem;
+        }
+
+        .read-more {
+            color: var(--turquoise);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .read-more:hover {
+            color: var(--red);
+        }
+
+        /* Contact Section */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--turquoise);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+        }
+
+        .contact-card h3 {
+            color: var(--dark-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card p {
+            color: #666;
+        }
+
+        .contact-card a {
+            color: var(--turquoise);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Map */
+        .map-container {
+            margin-top: 3rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-gray);
+            color: var(--white);
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--turquoise);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="images/logo-blasco-tarno.jpg" alt="Blasco Tarno Neurocirugía" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="logo-text">
+                    <div class="name">BLASCO TARNO</div>
+                    <div class="specialty">Neurocirugía</div>
+                </div>
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#equipo">Equipo Médico</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#faq">Preguntas Frecuentes</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <h1>Equipo de Neurocirugía Dr. Blasco / Dra. González Tarno</h1>
+        <p>Hospital Ruber Juan Bravo, Madrid</p>
+        <a href="#contacto" class="cta-button">Solicitar Consulta</a>
+    </section>
+
+    <!-- Services Section -->
+    <div class="container">
+        <section id="servicios">
+            <h2>Nuestros Servicios</h2>
+            <p class="section-subtitle">Especialidades neuroquirúrgicas con tecnología de vanguardia</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Cirugía de Columna</h3>
+                    <p>Tratamiento especializado de patologías de columna vertebral, incluyendo hernias discales, estenosis de canal, escoliosis y tumores espinales. Utilizamos técnicas mínimamente invasivas para optimizar la recuperación.</p>
+                    <span class="ver-procedimientos" onclick="toggleProcedimientos(this)">Ver procedimientos →</span>
+                    
+                    <div class="procedimientos-lista">
+                        <div class="procedimiento-item">
+                            <h4>1. Cirugía de hernia discal lumbar (microdiscectomía / discectomía)</h4>
+                            
+                            <div style="text-align: center; margin: 1.5rem 0;">
+                                <img src="images/cirugia-hernia-lumbar.jpg" alt="Cirugía de hernia discal lumbar" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                            </div>
+                            
+                            <h5>¿Qué problema trata?</h5>
+                            <p>Una hernia discal lumbar ocurre cuando el "disco" entre dos vértebras se desplaza y puede comprimir una raíz nerviosa, causando:</p>
+                            <ul>
+                                <li><strong>Ciática:</strong> dolor que baja por glúteo y pierna (a veces hasta el pie)</li>
+                                <li>Hormigueo o adormecimiento</li>
+                                <li>Debilidad (por ejemplo, dificultad para levantar el pie)</li>
+                            </ul>
+                            
+                            <h5>¿Cuándo suele indicarse cirugía?</h5>
+                            <p>Se plantea cuando hay:</p>
+                            <ul>
+                                <li>Dolor ciático intenso y persistente pese a tratamiento (analgésicos, fisioterapia, infiltraciones) durante semanas</li>
+                                <li>Déficit neurológico (debilidad progresiva)</li>
+                                <li>Síndrome de cola de caballo (urgencia): pérdida de control de orina/heces, anestesia en "silla de montar", debilidad marcada</li>
+                            </ul>
+                            
+                            <h5>¿En qué consiste?</h5>
+                            <p>Lo más habitual es una microdiscectomía (abordaje posterior):</p>
+                            <ul>
+                                <li>Incisión pequeña en la zona lumbar</li>
+                                <li>Separación cuidadosa de la musculatura</li>
+                                <li>Se localiza la raíz nerviosa y se retira solo el fragmento herniado que la comprime (no se "quita todo el disco")</li>
+                                <li>Cierre por planos</li>
+                            </ul>
+                            <p><strong>Objetivo principal:</strong> aliviar el dolor de pierna (ciática). El dolor lumbar puede mejorar, pero no es lo más predecible.</p>
+                            
+                            <h5>Ingreso y recuperación habituales (orientativo)</h5>
+                            <ul>
+                                <li><strong>Anestesia:</strong> general</li>
+                                <li><strong>Hospital:</strong> con frecuencia 24-48h (a veces alta el mismo día según caso/centro)</li>
+                                <li><strong>Caminar:</strong> el mismo día o al día siguiente</li>
+                                <li><strong>Trabajo:</strong> variable según tipo de trabajo; oficinas antes que trabajos físicos</li>
+                                <li><strong>Deporte/gimnasio:</strong> progresivo; se suele evitar carga pesada al inicio</li>
+                            </ul>
+                            
+                            <h5>Riesgos (los más relevantes)</h5>
+                            <ul>
+                                <li>Reaparición de hernia (recidiva) en el mismo nivel</li>
+                                <li>Infección, hematoma, mala cicatrización</li>
+                                <li>Desgarro de duramadre con fuga de LCR (puede requerir reposo o reparación)</li>
+                                <li>Persistencia de síntomas si el nervio estaba muy irritado o comprimido mucho tiempo</li>
+                                <li>Complicaciones generales: trombosis, problemas anestésicos (poco frecuentes)</li>
+                            </ul>
+                            
+                            <h5>Señales de alarma tras la cirugía</h5>
+                            <ul>
+                                <li>Fiebre alta, herida muy roja o que supura</li>
+                                <li>Dolor creciente no controlable</li>
+                                <li>Pérdida de fuerza nueva, o alteraciones de control de orina/heces → urgencias</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="procedimiento-item">
+                            <h4>2. Cirugía de hernia discal cervical + artrodesis (ACDF)</h4>
+                            
+                            <div style="text-align: center; margin: 1.5rem 0;">
+                                <img src="images/cirugia-hernia-cervical.jpg" alt="Cirugía de hernia discal cervical y artrodesis" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                            </div>
+                            
+                            <h5>¿Qué problema trata?</h5>
+                            <p>En el cuello, una hernia discal puede comprimir:</p>
+                            <ul>
+                                <li><strong>Raíces:</strong> dolor hacia hombro/brazo y hormigueos (radiculopatía)</li>
+                                <li><strong>Médula espinal:</strong> torpeza de manos, alteración de marcha, rigidez, sensación de "corriente" (mielopatía)</li>
+                            </ul>
+                            
+                            <h5>¿Cuándo se indica?</h5>
+                            <ul>
+                                <li>Dolor irradiado al brazo resistente a tratamiento</li>
+                                <li>Déficit neurológico (debilidad, pérdida de destreza)</li>
+                                <li>Signos de compresión medular (mielopatía) → suele indicarse antes</li>
+                            </ul>
+                            
+                            <h5>¿En qué consiste? (ACDF: discectomía cervical anterior y fusión)</h5>
+                            <ul>
+                                <li>Incisión anterior en el cuello (suele ser pequeña)</li>
+                                <li>Se retira el disco enfermo y se libera el nervio/médula</li>
+                                <li>Se coloca un espaciador (cage) con injerto óseo (o sustituto) para mantener altura</li>
+                                <li>A veces se añade una placa y tornillos para estabilizar</li>
+                                <li>Con el tiempo, ese nivel fusiona (se "pega"), por eso se llama artrodesis</li>
+                            </ul>
+                            <p><strong>Objetivo:</strong> quitar presión neurológica y estabilizar ese segmento.</p>
+                            
+                            <h5>Ingreso y recuperación</h5>
+                            <ul>
+                                <li><strong>Hospital:</strong> frecuente 1-2 días</li>
+                                <li>Puede haber molestias al tragar o ronquera transitoria los primeros días</li>
+                                <li>En algunos casos se usa collarín un tiempo; depende de técnica/estabilidad</li>
+                                <li>Se reintroduce actividad progresiva; evitar cargas y movimientos bruscos al inicio</li>
+                            </ul>
+                            
+                            <h5>Riesgos importantes (explicados en consulta)</h5>
+                            <ul>
+                                <li>Disfagia (dificultad para tragar) temporal</li>
+                                <li>Ronquera por irritación del nervio laríngeo (habitualmente transitoria)</li>
+                                <li>Fallo de fusión (pseudoartrosis) o dolor persistente</li>
+                                <li>Lesión nerviosa/medular (rara)</li>
+                                <li>Complicaciones generales: sangrado, infección, trombosis, anestesia</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="procedimiento-item">
+                            <h4>3. Estenosis de canal lumbar: laminectomía y artrodesis</h4>
+                            
+                            <div style="text-align: center; margin: 1.5rem 0;">
+                                <img src="images/cirugia-laminectomia.jpg" alt="Laminectomía y artrodesis lumbar" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                            </div>
+                            
+                            <h5>¿Qué problema trata?</h5>
+                            <p>La estenosis de canal es el estrechamiento del canal por desgaste (artrosis, hipertrofia de ligamentos, facetas, a veces listesis). Síntomas típicos:</p>
+                            <ul>
+                                <li><strong>Claudicación neurógena:</strong> dolor/pesadez en piernas al caminar que mejora al sentarse o inclinarse hacia delante</li>
+                                <li>Dolor lumbar y, a veces, ciática</li>
+                                <li>En casos avanzados: debilidad o alteración sensitiva</li>
+                            </ul>
+                            
+                            <h5>¿Cuándo se indica cirugía?</h5>
+                            <ul>
+                                <li>Limitación importante para caminar y vida diaria pese a tratamiento</li>
+                                <li>Déficit neurológico progresivo</li>
+                                <li>Estenosis con inestabilidad (por ejemplo, espondilolistesis) → suele requerir descompresión + estabilización</li>
+                            </ul>
+                            
+                            <h5>¿En qué consiste?</h5>
+                            <p><strong>A) Laminectomía / descompresión:</strong></p>
+                            <p>Se retira parte de la lámina/ligamentos que comprimen para abrir espacio a los nervios.</p>
+                            
+                            <p><strong>B) Artrodesis (fusión) cuando hay inestabilidad o riesgo de que aparezca:</strong></p>
+                            <p>Se unen dos (o más) vértebras para que no "bailen" entre sí. Puede combinar:</p>
+                            <ul>
+                                <li>Tornillos pediculares y barras</li>
+                                <li>Injerto óseo para lograr la fusión</li>
+                                <li>A veces una caja (cage) entre los cuerpos vertebrales</li>
+                            </ul>
+                            
+                            <h5>Modalidades de artrodesis</h5>
+                            <p>La elección depende de tu anatomía, niveles, estabilidad y objetivos. Principales opciones:</p>
+                            <ul>
+                                <li><strong>PLF (posterolateral fusion):</strong> fusión "por detrás y a los lados" con tornillos + injerto, sin entrar al disco</li>
+                                <li><strong>PLIF (posterior lumbar interbody fusion):</strong> desde atrás se entra al espacio del disco y se coloca cage dentro</li>
+                                <li><strong>TLIF (transforaminal lumbar interbody fusion):</strong> variante posterior/lateral que suele manipular menos el canal central</li>
+                                <li><strong>ALIF (anterior lumbar interbody fusion):</strong> acceso por delante (abdomen) para colocar un cage grande</li>
+                                <li><strong>LLIF / XLIF (lateral lumbar interbody fusion):</strong> acceso lateral; útil en ciertos niveles y deformidades</li>
+                                <li><strong>OLIF (oblique lateral interbody fusion):</strong> acceso anterolateral "oblicuo", alternativa lateral</li>
+                            </ul>
+                            <p><strong>Idea clave:</strong> todas buscan descomprimir y/o estabilizar; cambian la "puerta de entrada" y la forma de poner el soporte.</p>
+                            
+                            <h5>Recuperación (muy variable)</h5>
+                            <ul>
+                                <li><strong>Hospital:</strong> frecuentemente 2-5 días según niveles/técnica</li>
+                                <li>Se inicia deambulación precoz</li>
+                                <li>La fusión ósea tarda meses; los primeros meses se protegen cargas</li>
+                                <li>Rehabilitación dirigida para tronco y cadera</li>
+                            </ul>
+                            
+                            <h5>Riesgos más relevantes</h5>
+                            <ul>
+                                <li>Infección, sangrado, hematoma</li>
+                                <li>Lesión nerviosa (rara), fuga de LCR (si hay rotura dural)</li>
+                                <li>No fusión (pseudoartrosis), aflojamiento de material</li>
+                                <li>Dolor residual o rigidez</li>
+                                <li>Trombosis/embolismo (prevención con movilización y medidas indicadas)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="procedimiento-item">
+                            <h4>4. Cirugía mínimamente invasiva de columna (MISS) y técnicas endoscópicas</h4>
+                            
+                            <div style="text-align: center; margin: 1.5rem 0;">
+                                <img src="images/cirugia-miss.jpg" alt="Cirugía mínimamente invasiva de columna - diferentes abordajes" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                                <p style="font-size: 0.9rem; color: #666; margin-top: 0.5rem; font-style: italic;">Diferentes abordajes de artrodesis lumbar: ALIF, PLIF, TLIF, XLIF/LLIF, OLIF</p>
+                            </div>
+                            
+                            <h5>¿Qué significa "mínimamente invasiva"?</h5>
+                            <p>No significa "pequeña" en importancia, sino que intenta:</p>
+                            <ul>
+                                <li>Menor daño muscular (separación en vez de cortar)</li>
+                                <li>Menos sangrado</li>
+                                <li>Menor dolor postoperatorio en muchos casos</li>
+                                <li>Recuperación funcional más rápida en pacientes seleccionados</li>
+                            </ul>
+                            
+                            <h5>Técnicas MISS frecuentes</h5>
+                            <ul>
+                                <li>Microdiscectomía tubular (tubos dilatadores)</li>
+                                <li>Descompresión tubular para estenosis (laminotomía/foraminotomía)</li>
+                                <li>Artrodesis MIS con tornillos percutáneos (p. ej., MIS-TLIF en casos seleccionados)</li>
+                            </ul>
+                            
+                            <h5>Cirugía endoscópica</h5>
+                            <ul>
+                                <li>Usa una cámara y canales de trabajo a través de incisiones muy pequeñas</li>
+                                <li>Puede ser útil para hernias discales y algunos casos de estenosis foraminal/lateral</li>
+                                <li>No todos los pacientes son candidatos: depende del tipo de hernia/estenosis, nivel, anatomía, estabilidad</li>
+                            </ul>
+                            
+                            <h5>Lo importante para pacientes</h5>
+                            <ul>
+                                <li>La técnica se elige por indicación médica, no por "tamaño de cicatriz"</li>
+                                <li>Si hay inestabilidad, deformidad o estenosis multisegmentaria severa, puede requerirse una cirugía más amplia o combinada</li>
+                                <li>En manos expertas y con selección adecuada, MISS/endoscopia pueden ofrecer resultados comparables con recuperación más cómoda</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <h3>Tumores Cerebrales</h3>
+                    <p>Diagnóstico y tratamiento quirúrgico de tumores cerebrales benignos y malignos. Abordaje multidisciplinar con oncología y radioterapia para ofrecer el mejor resultado posible.</p>
+                    <span class="ver-procedimientos" onclick="toggleProcedimientos(this)">Ver procedimientos →</span>
+                    
+                    <div class="procedimientos-lista">
+                        <div class="procedimiento-item">
+                            <h4>Cirugía de tumores intracraneales: meningioma, gliomas y otros</h4>
+                            
+                            <h5>Objetivos generales de la cirugía cerebral</h5>
+                            <p>Dependen del tumor, pero suelen ser:</p>
+                            <ul>
+                                <li>Quitar masa tumoral para mejorar síntomas y controlar la enfermedad</li>
+                                <li>Obtener diagnóstico (biopsia) para decidir tratamiento (radioterapia, quimioterapia, seguimiento)</li>
+                                <li>Proteger funciones (lenguaje, movimiento, visión) minimizando secuelas</li>
+                            </ul>
+                            
+                            <h5>Meningioma intracraneal</h5>
+                            <p>Suele ser un tumor extraaxial (nace de las meninges). Muchas veces es benigno, pero no siempre.</p>
+                            
+                            <p><strong>Cuándo se opera (típico):</strong></p>
+                            <ul>
+                                <li>Crecimiento en controles</li>
+                                <li>Síntomas por compresión (crisis epilépticas, déficit focal, hipertensión intracraneal)</li>
+                                <li>Edema cerebral importante o localización problemática</li>
+                            </ul>
+                            
+                            <p><strong>En qué consiste:</strong></p>
+                            <ul>
+                                <li>Craneotomía (abrir una "ventana" de hueso)</li>
+                                <li>Disección del tumor, control de su base de implantación cuando es posible</li>
+                                <li>Cierre y recolocación del hueso (habitualmente)</li>
+                            </ul>
+                            
+                            <h5>Gliomas (y otros tumores intraaxiales)</h5>
+                            <p>Los gliomas nacen del propio tejido cerebral. La estrategia varía por tipo y grado.</p>
+                            
+                            <p><strong>Opciones quirúrgicas:</strong></p>
+                            <ul>
+                                <li><strong>Resección máxima segura:</strong> quitar lo máximo sin dañar función</li>
+                                <li><strong>Biopsia estereotáxica:</strong> cuando no es seguro resecar o para diagnóstico</li>
+                            </ul>
+                            
+                            <h5>Herramientas habituales para seguridad</h5>
+                            <ul>
+                                <li><strong>Neuronavegación:</strong> tipo "GPS" cerebral</li>
+                                <li><strong>Monitorización neurofisiológica:</strong> vigilancia de funciones durante la cirugía</li>
+                                <li><strong>Fluorescencia:</strong> en algunos tumores para visualizar mejor los bordes</li>
+                                <li><strong>Cirugía "despierto":</strong> en áreas elocuentes (lenguaje) cuando está indicado</li>
+                            </ul>
+                            
+                            <h5>Ingreso y recuperación</h5>
+                            <ul>
+                                <li>Suele requerir UCI/URPA al inicio según caso</li>
+                                <li>Se controla edema/dolor y se valora neurología</li>
+                                <li>Rehabilitación si hay déficits</li>
+                                <li>Seguimiento con anatomía patológica y comité para plan oncológico</li>
+                            </ul>
+                            
+                            <h5>Riesgos (los que se explican siempre)</h5>
+                            <ul>
+                                <li>Sangrado intracraneal, infección, crisis epilépticas</li>
+                                <li>Edema cerebral transitorio</li>
+                                <li>Déficits neurológicos (dependen de localización)</li>
+                                <li>Complicaciones generales (trombosis, neumonía, anestesia)</li>
+                            </ul>
+                            
+                            <p><strong>Mensaje realista y útil para pacientes:</strong> En tumores cerebrales, la cirugía suele ser el primer paso de un plan más amplio (observación, radioterapia, quimioterapia o combinaciones), según el diagnóstico final.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <h3>Hidrocefalia y LCR</h3>
+                    <p>Manejo integral de trastornos del líquido cefalorraquídeo, incluyendo derivaciones ventriculares, endoscopia del tercer ventrículo y tratamiento de hidrocefalia normotensiva.</p>
+                </div>
+
+                <div class="service-card">
+                    <h3>Base de Cráneo</h3>
+                    <p>Cirugía de patologías complejas de la base del cráneo, incluyendo schwannomas vestibulares, meningiomas y adenomas hipofisarios, con abordajes especializados.</p>
+                </div>
+
+                <div class="service-card">
+                    <h3>Patología Vascular</h3>
+                    <p>Tratamiento quirúrgico de aneurismas cerebrales, malformaciones arteriovenosas y otras patologías vasculares cerebrales, incluyendo técnicas endovasculares.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section id="equipo">
+            <h2>Nuestro Equipo</h2>
+            <p class="section-subtitle">Neurocirujanos especializados con amplia experiencia</p>
+            
+            <div class="team-grid">
+                <div class="doctor-card">
+                    <div class="doctor-image">
+                        <img src="images/foto-dr-blasco.jpg" alt="Dr. Guillermo Blasco" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                    </div>
+                    <h3>Dr. Guillermo Blasco García de Andoain</h3>
+                    <p class="specialty">Neurocirujano</p>
+                    <p style="margin-bottom: 1rem;"><strong>Formación:</strong></p>
+                    <p>• Licenciado en Medicina, Universidad Complutense de Madrid (2008-2014)</p>
+                    <p>• MIR Neurocirugía, Hospital Universitario La Princesa (2015-2020)</p>
+                    <p>• Máster en Oncología Neurológica, Universidad CEU Cardenal Herrera (2021-2022)</p>
+                    <p>• Rotación en Stanford University, Brain Tumor & Skull Base Center, California (2019)</p>
+                    
+                    <p style="margin-top: 1rem;"><strong>Experiencia:</strong></p>
+                    <p>• Facultativo Especialista en Neurocirugía, Hospital Universitario La Princesa (desde 2020)</p>
+                    <p>• Actividad privada, Hospital Ruber Juan Bravo 39 (desde 2025)</p>
+                    
+                    <p style="margin-top: 1rem;"><strong>Áreas de especialización:</strong></p>
+                    <p>Neuro-oncología, Cirugía de Base de Cráneo, Patología Neurovascular, Cirugía de Columna con técnicas mínimamente invasivas (MISS) y Cirugía Endoscópica</p>
+                </div>
+
+                <div class="doctor-card">
+                    <div class="doctor-image">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 150'%3E%3Ccircle cx='75' cy='75' r='75' fill='%2300a19a'/%3E%3Ctext x='75' y='75' font-size='48' fill='white' text-anchor='middle' dominant-baseline='central' font-family='sans-serif'%3EPG%3C/text%3E%3C/svg%3E" alt="Dra. Patricia González Tarno" style="width: 100%; height: 100%; border-radius: 50%;">
+                    </div>
+                    <h3>Dra. Patricia González Tarno</h3>
+                    <p class="specialty">Neurocirujana</p>
+                    <p style="margin-bottom: 1rem;"><strong>Formación:</strong></p>
+                    <p>Información de formación académica y especialización en neurocirugía.</p>
+                    
+                    <p style="margin-top: 1rem;"><strong>Experiencia:</strong></p>
+                    <p>Amplia experiencia en neurocirugía con especial dedicación a patologías complejas del sistema nervioso.</p>
+                    
+                    <p style="margin-top: 1rem;"><strong>Áreas de especialización:</strong></p>
+                    <p>Base de cráneo, Patología vascular cerebral, Cirugía de tumores cerebrales y técnicas neuroquirúrgicas avanzadas</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section id="blog">
+            <h2>Blog y Noticias</h2>
+            <p class="section-subtitle">Información actualizada sobre neurocirugía y salud neurológica</p>
+            
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-image">📰</div>
+                    <div class="blog-content">
+                        <p class="blog-date">Próximamente</p>
+                        <h3>Avances en Cirugía Mínimamente Invasiva</h3>
+                        <p>Descubre cómo las nuevas técnicas quirúrgicas mejoran la recuperación de los pacientes...</p>
+                        <a href="#" class="read-more">Leer más →</a>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">📰</div>
+                    <div class="blog-content">
+                        <p class="blog-date">Próximamente</p>
+                        <h3>¿Cuándo Consultar a un Neurocirujano?</h3>
+                        <p>Conoce los signos y síntomas que indican la necesidad de una evaluación neuroquirúrgica...</p>
+                        <a href="#" class="read-more">Leer más →</a>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="blog-image">📰</div>
+                    <div class="blog-content">
+                        <p class="blog-date">Próximamente</p>
+                        <h3>Prevención de Patologías de Columna</h3>
+                        <p>Consejos prácticos para mantener una columna saludable y prevenir lesiones...</p>
+                        <a href="#" class="read-more">Leer más →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq">
+            <h2>Preguntas Frecuentes</h2>
+            <p class="section-subtitle">Respuestas a las dudas más comunes de nuestros pacientes</p>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        ¿Cuándo debo consultar a un neurocirujano?
+                    </div>
+                    <div class="faq-answer">
+                        Debe consultar a un neurocirujano si experimenta dolores de cabeza persistentes, problemas de equilibrio, debilidad en extremidades, dolor de espalda crónico o radicular, o si su médico le ha detectado alguna lesión cerebral o espinal que requiera evaluación quirúrgica.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        ¿Cómo solicito una cita?
+                    </div>
+                    <div class="faq-answer">
+                        Puede solicitar una cita llamando directamente a nuestro teléfono o a través de la aplicación de Adeslas si es asegurado. Nuestro equipo administrativo le atenderá y le asignará la cita más próxima disponible.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        ¿Qué debo llevar a la primera consulta?
+                    </div>
+                    <div class="faq-answer">
+                        Es importante que traiga toda la documentación médica relevante: informes médicos previos, pruebas de imagen (resonancias, TAC, radiografías) tanto en formato digital como impreso, listado de medicación actual y su tarjeta sanitaria o de seguro.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        ¿Trabajan con seguros médicos?
+                    </div>
+                    <div class="faq-answer">
+                        Sí, trabajamos principalmente con Adeslas. Si tiene otro seguro médico, le recomendamos consultar con su aseguradora sobre la posibilidad de reembolso por atención médica especializada.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        ¿Cuánto dura la recuperación después de una cirugía?
+                    </div>
+                    <div class="faq-answer">
+                        El tiempo de recuperación varía según el tipo de cirugía y las características individuales de cada paciente. En la consulta evaluaremos su caso específico y le proporcionaremos información detallada sobre el proceso postoperatorio y los tiempos esperados de recuperación.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        ¿Realizan cirugía mínimamente invasiva?
+                    </div>
+                    <div class="faq-answer">
+                        Sí, siempre que sea posible y apropiado para su condición, utilizamos técnicas mínimamente invasivas que permiten incisiones más pequeñas, menos dolor postoperatorio y una recuperación más rápida.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contacto">
+            <h2>Contacto</h2>
+            <p class="section-subtitle">Estamos aquí para atenderle</p>
+            
+            <div class="contact-info">
+                <div class="contact-card">
+                    <div class="contact-icon">📞</div>
+                    <h3>Teléfono</h3>
+                    <p><a href="tel:+34910687777">910 687 777</a> (Juan Bravo 39)</p>
+                    <p><a href="tel:+34910687999">910 687 999</a> (Juan Bravo 49)</p>
+                    <p>Atención al paciente:<br><a href="tel:+34900301013">900 301 013</a></p>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">✉️</div>
+                    <h3>Email</h3>
+                    <p><a href="mailto:ruberblascotarno@gmail.com">ruberblascotarno@gmail.com</a></p>
+                    <p>Respuesta en 24-48h</p>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">📱</div>
+                    <h3>App Adeslas</h3>
+                    <p>Pacientes asegurados pueden solicitar cita a través de la aplicación de Adeslas</p>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">📍</div>
+                    <h3>Ubicación</h3>
+                    <p>Hospital Ruber Juan Bravo<br>
+                    Calle Juan Bravo, 39 y 49<br>
+                    28006 Madrid</p>
+                    <p style="font-size: 0.9em; margin-top: 0.5rem;">Metro: Núñez de Balboa (L5, L9)<br>Diego de León (L4, L5, L6)</p>
+                </div>
+            </div>
+
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3036.874172263159!2d-3.6799474!3d40.4327028!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd4228f4bc458b3d%3A0x8e1e3e8e8e8e8e8e!2sHospital%20Ruber%20Juan%20Bravo!5e0!3m2!1ses!2ses!4v1738166400000!5m2!1ses!2ses" 
+                    width="100%" 
+                    height="400" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Blasco Tarno Neurocirugía</h3>
+                <p>Excelencia en neurocirugía en Hospital Ruber Juan Bravo, Madrid</p>
+                <p style="margin-top: 1rem;"><a href="mailto:ruberblascotarno@gmail.com" style="color: rgba(255,255,255,0.8);">ruberblascotarno@gmail.com</a></p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Enlaces Rápidos</h3>
+                <a href="#servicios">Servicios</a>
+                <a href="#equipo">Equipo Médico</a>
+                <a href="#blog">Blog</a>
+                <a href="#faq">Preguntas Frecuentes</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p>Hospital Ruber Juan Bravo</p>
+                <p>C/ Juan Bravo, 39 y 49</p>
+                <p>28006 Madrid, España</p>
+                <p>Tel: 910 687 777 / 910 687 999</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Horario de Consultas</h3>
+                <p>Consultar disponibilidad<br>según especialidad</p>
+                <p><strong>Atención al paciente:</strong><br>900 301 013</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 Blasco Tarno Neurocirugía - Hospital Ruber Juan Bravo. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle mobile menu
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        // Toggle FAQ items
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            element.classList.toggle('active');
+            answer.classList.toggle('active');
+        }
+        
+        // Toggle procedimientos
+        function toggleProcedimientos(element) {
+            const lista = element.nextElementSibling;
+            lista.classList.toggle('active');
+            
+            // Change text
+            if (lista.classList.contains('active')) {
+                element.textContent = 'Ocultar procedimientos ↑';
+            } else {
+                element.textContent = 'Ver procedimientos →';
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    document.getElementById('navLinks').classList.remove('active');
+                }
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('nav');
+            const navLinks = document.getElementById('navLinks');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (!nav.contains(event.target) && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
