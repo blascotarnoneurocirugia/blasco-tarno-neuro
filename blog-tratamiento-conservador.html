@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi neurocirujano no me ha recomendado cirugía - Blog Blasco Tarno</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --turquoise: #00a19a; --red: #e63946; --dark-gray: #2b2d42; --light-gray: #f8f9fa; --white: #ffffff; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; line-height: 1.6; color: var(--dark-gray); }
+        header { background: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: fixed; width: 100%; top: 0; z-index: 1000; }
+        nav { max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo img { height: 90px; width: auto; display: block; }
+        .logo-text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-weight: 700; font-size: 1.8rem; line-height: 1.2; display: none; }
+        .logo-text .name { color: var(--turquoise); letter-spacing: 0.5px; }
+        .logo-text .specialty { color: var(--red); font-size: 1rem; font-weight: 600; text-transform: uppercase; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { text-decoration: none; color: var(--dark-gray); font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--turquoise); }
+        .menu-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--dark-gray); }
+        .article-header { margin-top: 120px; background: linear-gradient(135deg, var(--turquoise) 0%, #008b85 100%); color: var(--white); padding: 4rem 2rem 3rem; }
+        .article-header-content { max-width: 900px; margin: 0 auto; }
+        .back-link { display: inline-block; color: var(--white); text-decoration: none; margin-bottom: 1rem; font-weight: 600; transition: opacity 0.3s; }
+        .back-link:hover { opacity: 0.8; }
+        .article-meta { display: flex; gap: 1.5rem; margin-bottom: 1.5rem; font-size: 0.95rem; opacity: 0.9; }
+        .article-header h1 { font-size: 2.5rem; margin-bottom: 1rem; line-height: 1.2; }
+        .article-intro { font-size: 1.2rem; opacity: 0.95; line-height: 1.8; }
+        .container { max-width: 900px; margin: 0 auto; padding: 4rem 2rem; }
+        .article-content { background: var(--white); padding: 3rem; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); }
+        .article-content img { width: 100%; max-width: 700px; margin: 0 auto 3rem; display: block; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .article-content h2 { color: var(--turquoise); margin-top: 2.5rem; margin-bottom: 1.5rem; font-size: 1.8rem; padding-bottom: 0.5rem; border-bottom: 3px solid var(--light-gray); }
+        .article-content h2:first-child { margin-top: 0; }
+        .article-content h3 { color: var(--dark-gray); margin-top: 1.5rem; margin-bottom: 1rem; font-size: 1.3rem; }
+        .article-content p { color: #555; line-height: 1.8; margin-bottom: 1.5rem; font-size: 1.05rem; }
+        .article-content ul { margin-left: 1.5rem; margin-bottom: 1.5rem; }
+        .article-content li { color: #555; line-height: 1.8; margin-bottom: 0.8rem; font-size: 1.05rem; }
+        .article-content strong { color: var(--dark-gray); font-weight: 600; }
+        .alert-box { background: #fff3cd; border-left: 5px solid var(--red); padding: 1.5rem; margin: 2rem 0; border-radius: 5px; }
+        .alert-box h3 { color: var(--red); margin-bottom: 1rem; font-size: 1.3rem; }
+        .info-box { background: #d1ecf1; border-left: 5px solid var(--turquoise); padding: 1.5rem; margin: 2rem 0; border-radius: 5px; }
+        .info-box h3 { color: var(--turquoise); margin-bottom: 1rem; font-size: 1.3rem; }
+        .highlight-box { background: #e8f5e9; border-left: 5px solid #4caf50; padding: 1.5rem; margin: 2rem 0; border-radius: 5px; }
+        .related-articles { margin-top: 4rem; padding-top: 3rem; border-top: 2px solid var(--light-gray); }
+        .related-articles h3 { color: var(--dark-gray); margin-bottom: 1.5rem; }
+        .related-link { display: block; padding: 1rem; background: var(--light-gray); border-radius: 8px; margin-bottom: 1rem; text-decoration: none; color: var(--dark-gray); transition: all 0.3s; }
+        .related-link:hover { background: var(--turquoise); color: var(--white); }
+        footer { background: var(--dark-gray); color: var(--white); padding: 3rem 2rem 1rem; margin-top: 4rem; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
+        .footer-section h3 { color: var(--turquoise); margin-bottom: 1rem; }
+        .footer-section p, .footer-section a { color: rgba(255,255,255,0.8); text-decoration: none; display: block; margin-bottom: 0.5rem; }
+        .footer-section a:hover { color: var(--white); }
+        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.6); }
+        @media (max-width: 768px) { .menu-toggle { display: block; } .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--white); flex-direction: column; padding: 1rem; box-shadow: 0 5px 10px rgba(0,0,0,0.1); } .nav-links.active { display: flex; } .article-header h1 { font-size: 2rem; } .article-content { padding: 2rem 1.5rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo-blasco-tarno.jpg" alt="Blasco Tarno Neurocirugía" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <div class="logo-text"><div class="name">BLASCO TARNO</div><div class="specialty">Neurocirugía</div></div>
+                </a>
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#inicio">Inicio</a></li>
+                <li><a href="index.html#servicios">Servicios</a></li>
+                <li><a href="index.html#equipo">Equipo Médico</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="index.html#faq">Preguntas Frecuentes</a></li>
+                <li><a href="index.html#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="article-header">
+        <div class="article-header-content">
+            <a href="blog.html" class="back-link">← Volver al Blog</a>
+            <div class="article-meta">
+                <span>📅 Enero 2026</span>
+                <span>💡 Consejos</span>
+                <span>⏱️ 8 min lectura</span>
+            </div>
+            <h1>🧠 Mi neurocirujano no me ha recomendado cirugía de columna</h1>
+            <p class="article-intro">¿Qué medidas puedo adoptar para mejorar mi dolor de espalda o cuello? Que no se recomiende cirugía es una buena noticia en la mayoría de los casos. Significa que tu problema puede mejorar con tratamiento conservador y cambios de hábitos.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="article-content">
+            <img src="images/tratamiento-conservador-columna.jpg" alt="Tratamiento conservador para dolor de columna">
+
+            <p>La evidencia científica actual muestra que la mayoría de los dolores de columna mejoran con medidas activas, especialmente movimiento, ejercicio y estrategias de autocuidado.</p>
+            <p><strong>El objetivo no es solo reducir el dolor, sino recuperar función, confianza y calidad de vida.</strong></p>
+
+            <h2>🧬 Principio clave: el movimiento es tratamiento</h2>
+            <p>Durante años se recomendó reposo para el dolor de espalda. Hoy sabemos que esto es un error.</p>
+            <p><strong>La investigación demuestra que:</strong></p>
+            <ul>
+                <li>El ejercicio reduce el dolor lumbar crónico frente a no hacer nada.</li>
+                <li>Mantener actividad mejora la función y acelera la recuperación.</li>
+                <li>Programas de ejercicio supervisado son una de las intervenciones más eficaces según guías clínicas internacionales.</li>
+            </ul>
+
+            <p><strong>El reposo prolongado empeora la recuperación porque:</strong></p>
+            <ul>
+                <li>Debilita músculos.</li>
+                <li>Aumenta la rigidez.</li>
+                <li>Reduce tolerancia al esfuerzo.</li>
+                <li>Incrementa el miedo al movimiento.</li>
+            </ul>
+
+            <h2>🏃 Ejercicio físico: qué tipo funciona mejor</h2>
+            <p>No existe un único ejercicio perfecto. Lo importante es la regularidad y progresión. Los tipos con mayor evidencia incluyen:</p>
+
+            <h3>✔ Ejercicio aeróbico</h3>
+            <p>Caminar, bicicleta, natación.</p>
+            <p><strong>Beneficios:</strong></p>
+            <ul>
+                <li>Mejora circulación y nutrición de tejidos.</li>
+                <li>Reduce inflamación sistémica.</li>
+                <li>Libera endorfinas.</li>
+                <li>Mejora el sueño y el estado de ánimo.</li>
+            </ul>
+            <p>Incluso caminar de forma regular reduce el riesgo de dolor lumbar crónico.</p>
+
+            <h3>✔ Fortalecimiento muscular (especialmente core y espalda)</h3>
+            <p>El fortalecimiento mejora estabilidad y control de la columna.</p>
+            <p><strong>Ejercicios útiles:</strong></p>
+            <ul>
+                <li>Abdominales profundos.</li>
+                <li>Lumbar estabilizador.</li>
+                <li>Glúteos.</li>
+                <li>Escápulas y hombros (cervical).</li>
+            </ul>
+            <p>Programas como Pilates, yoga o ejercicios de control motor han demostrado mejorar dolor y función.</p>
+
+            <h3>✔ Ejercicios de control motor</h3>
+            <p>Buscan mejorar la coordinación muscular y el movimiento eficiente. Especialmente útiles cuando:</p>
+            <ul>
+                <li>Hay dolor persistente.</li>
+                <li>Sensación de inestabilidad.</li>
+                <li>Recaídas frecuentes.</li>
+            </ul>
+
+            <h3>✔ Ejercicio cervical específico</h3>
+            <p>Para dolor de cuello:</p>
+            <ul>
+                <li>Fortalecimiento cervical profundo.</li>
+                <li>Ejercicios escapulares.</li>
+                <li>Reeducación postural.</li>
+            </ul>
+            <p>Estos programas reducen dolor y discapacidad de forma significativa.</p>
+
+            <h2>🧍 Postura: lo que realmente importa</h2>
+            <p><strong>La postura perfecta no existe.</strong> Lo importante es:</p>
+            <ul>
+                <li>Variar posiciones.</li>
+                <li>Evitar permanecer mucho tiempo inmóvil.</li>
+                <li>Mantener movimiento frecuente.</li>
+            </ul>
+            <p><strong>Factores que sí influyen:</strong></p>
+            <ul>
+                <li>Trabajo prolongado sentado.</li>
+                <li>Pantallas bajas.</li>
+                <li>Flexión mantenida del cuello.</li>
+            </ul>
+            <p>La ergonomía combinada con ejercicio mejora el dolor cervical.</p>
+
+            <h2>🧠 El papel del cerebro en el dolor de espalda</h2>
+            <p>El dolor de columna no depende solo de discos o huesos. Influyen:</p>
+            <ul>
+                <li>Estrés.</li>
+                <li>Ansiedad.</li>
+                <li>Miedo al movimiento.</li>
+                <li>Falta de sueño.</li>
+                <li>Fatiga.</li>
+            </ul>
+            <p>Los programas que combinan ejercicio con educación o terapia cognitiva tienen mejores resultados que el tratamiento físico aislado.</p>
+            <p><em>Esto no significa que el dolor sea psicológico, sino que el sistema nervioso participa en la percepción del dolor.</em></p>
+
+            <h2>😴 Sueño y dolor de columna</h2>
+            <p><strong>Dormir mal aumenta el dolor.</strong> Se ha demostrado que:</p>
+            <ul>
+                <li>El insomnio empeora el dolor crónico.</li>
+                <li>Dormir mejor reduce la sensibilidad al dolor.</li>
+            </ul>
+            <p><strong>Consejos con evidencia:</strong></p>
+            <ul>
+                <li>Rutina regular.</li>
+                <li>Evitar pantallas antes de dormir.</li>
+                <li>Almohada adecuada para cervical.</li>
+            </ul>
+            <p>Algunas almohadas cervicales pueden mejorar síntomas en pacientes seleccionados.</p>
+
+            <h2>🍎 Nutrición e inflamación</h2>
+            <p>La dieta influye más de lo que se pensaba.</p>
+            <p><strong>Factores que empeoran dolor:</strong></p>
+            <ul>
+                <li>Obesidad.</li>
+                <li>Dieta ultraprocesada.</li>
+                <li>Inflamación metabólica.</li>
+            </ul>
+            <p><strong>Factores protectores:</strong></p>
+            <ul>
+                <li>Dieta mediterránea.</li>
+                <li>Proteínas adecuadas.</li>
+                <li>Omega-3.</li>
+                <li>Frutas y verduras.</li>
+            </ul>
+            <p>La pérdida de peso reduce carga mecánica y mejora síntomas.</p>
+
+            <h2>🚬 Tabaco</h2>
+            <p><strong>Fumar es uno de los factores más importantes que empeoran la columna.</strong></p>
+            <p><strong>Efectos:</strong></p>
+            <ul>
+                <li>Reduce irrigación de discos.</li>
+                <li>Aumenta degeneración.</li>
+                <li>Retrasa curación.</li>
+                <li>Incrementa dolor crónico.</li>
+            </ul>
+            <p>Dejar de fumar mejora la evolución del dolor.</p>
+
+            <h2>🧘 Estrategias físicas adicionales útiles</h2>
+            <p>Con evidencia variable pero positiva cuando se combinan con ejercicio:</p>
+            <ul>
+                <li>Terapia manual.</li>
+                <li>Masaje.</li>
+                <li>Movilizaciones.</li>
+                <li>Calor local.</li>
+            </ul>
+            <p>Las guías recomiendan estas técnicas solo como complemento del ejercicio.</p>
+
+            <h2>🧠 Factores psicológicos y sociales</h2>
+            <p><strong>Predicen evolución más que las imágenes de resonancia.</strong></p>
+            <p><strong>Factores de riesgo:</strong></p>
+            <ul>
+                <li>Miedo al movimiento.</li>
+                <li>Catastrofismo.</li>
+                <li>Depresión.</li>
+                <li>Estrés laboral.</li>
+                <li>Insatisfacción laboral.</li>
+            </ul>
+            <p>Intervenir sobre ellos mejora resultados.</p>
+
+            <h2>📈 Qué resultados puedes esperar</h2>
+            <p>La mayoría de pacientes mejoran con tratamiento conservador.</p>
+            <p><strong>Expectativas realistas:</strong></p>
+            <ul>
+                <li>Mejoría progresiva.</li>
+                <li>Algunos días malos son normales.</li>
+                <li>El objetivo es funcionalidad, no ausencia total de dolor.</li>
+            </ul>
+
+            <div class="alert-box">
+                <h3>🚨 Cuándo consultar de nuevo</h3>
+                <p><strong>Debes reevaluarte si aparece:</strong></p>
+                <ul style="margin-bottom: 0;">
+                    <li>Pérdida de fuerza.</li>
+                    <li>Alteraciones de sensibilidad progresivas.</li>
+                    <li>Problemas de esfínteres.</li>
+                    <li>Dolor que no mejora tras semanas de tratamiento.</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box">
+                <h3>⭐ Mensaje clave</h3>
+                <p><strong>No necesitar cirugía no significa que no haya solución.</strong></p>
+                <p>La evidencia científica muestra que:</p>
+                <p style="margin: 0; font-size: 1.1rem;"><strong>👉 Movimiento + ejercicio + hábitos saludables<br>👉 Educación + confianza en la recuperación</strong></p>
+                <p style="margin: 1rem 0 0 0;">son el tratamiento más eficaz para la mayoría de los dolores de columna.</p>
+            </div>
+
+            <div class="related-articles">
+                <h3>Artículos relacionados</h3>
+                <a href="blog-recuperacion-actividad-fisica.html" class="related-link">
+                    <strong>→ Recuperación y actividad física tras cirugía</strong>
+                    <br><small>Guía de retorno al ejercicio postoperatorio</small>
+                </a>
+                <a href="blog-postoperatorio-lumbar.html" class="related-link">
+                    <strong>→ Cuidados postoperatorios de cirugía lumbar</strong>
+                    <br><small>Recomendaciones tras intervención lumbar</small>
+                </a>
+                <a href="cirugia-columna.html" class="related-link">
+                    <strong>→ Procedimientos de cirugía de columna</strong>
+                    <br><small>Información sobre las cirugías disponibles</small>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Blasco Tarno Neurocirugía</h3>
+                <p>Excelencia en neurocirugía en Hospital Ruber Juan Bravo, Madrid</p>
+                <p style="margin-top: 1rem;"><a href="mailto:ruberblascotarno@gmail.com">ruberblascotarno@gmail.com</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Enlaces Rápidos</h3>
+                <a href="index.html#servicios">Servicios</a>
+                <a href="index.html#equipo">Equipo Médico</a>
+                <a href="blog.html">Blog</a>
+                <a href="index.html#faq">Preguntas Frecuentes</a>
+            </div>
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <p>Hospital Ruber Juan Bravo</p>
+                <p>C/ Juan Bravo, 39 y 49</p>
+                <p>28006 Madrid, España</p>
+                <p>Tel: 910 687 777 / 910 687 999</p>
+            </div>
+            <div class="footer-section">
+                <h3>Horario de Consultas</h3>
+                <p>Consultar disponibilidad<br>según especialidad</p>
+                <p><strong>Atención al paciente:</strong><br>900 301 013</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Blasco Tarno Neurocirugía - Hospital Ruber Juan Bravo. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
